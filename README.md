@@ -51,56 +51,70 @@ It blends **visual analogies**, **interactive hands-on labs**, and **real-world 
 
 > Visual representation of Zero Trust policy, authentication, and enforcement planes.
 
-```mermaid
-graph TD
-    subgraph Enterprise Environment
-        direction LR
-        subgraph Policy Plane
-            PolicyEngine[("fa:fa-shield Policy Engine")] --> PolicyAdministrator[("fa:fa-cog Policy Administrator")];
-            PolicyAdministrator --> PolicyEnforcementPoint[("fa:fa-lock Policy Enforcement Point")];
-            PolicyEnforcementPoint --> Segment1[("fa:fa-server Protected Resource")];
-            PolicyEnforcementPoint --> Segment2[("fa:fa-database Protected Resource")];
-            PolicyEnforcementPoint --> Segment3[("fa:fa-cloud Protected Resource")];
-        end
-
-        subgraph Continuous Diagnostics & Mitigation (CDM)
-            MonitoringAnalytics[("fa:fa-chart-line Monitoring & Analytics")] --> PolicyEngine;
-            ThreatIntelligence[("fa:fa-bolt Threat Intelligence")] --> PolicyEngine;
-            SIEM[("fa:fa-bar-chart-o SIEM")] --> PolicyEngine;
-        end
-
-        subgraph Authentication & Authorization
-            IAM[("fa:fa-users Identity & Access Management")] --> PolicyEngine;
-            MFA[("fa:fa-key Multi-Factor Authentication")] --> IAM;
-            DevicePosture[("fa:fa-mobile Device Posture Validation")] --> PolicyEngine;
-        end
-
-        subgraph Resources
-            Segment1;
-            Segment2;
-            Segment3;
-        end
+flowchart TD
+    %% User & Device Access
+    subgraph UD [User &amp; Device Access]
+        UserDevice[fa:fa-laptop User & Device]
     end
 
-    subgraph User & Device Access
-        UserDevice(("fa:fa-laptop User & Device")) -- Access Request --> PolicyEnforcementPoint;
-        UserDevice --> |Device Information| DevicePosture;
-        UserDevice --> |User Credentials| IAM;
+    %% Authentication & Authorization
+    subgraph AA [Authentication &amp; Authorization]
+        IAM[fa:fa-users Identity & Access Management]
+        MFA[fa:fa-key Multi-Factor Authentication]
+        DevicePosture[fa:fa-mobile Device Posture Validation]
+        MFA --> IAM
     end
 
-    style UserDevice fill:#e6f3ff,stroke:#6cb0f5,stroke-width:2px;
-    style PolicyEnforcementPoint fill:#fff0f5,stroke:#ff69b4,stroke-width:2px;
-    style PolicyEngine fill:#fff0f5,stroke:#ff69b4,stroke-width:2px;
-    style PolicyAdministrator fill:#fff0f5,stroke:#ff69b4,stroke-width:2px;
-    style IAM fill:#e6f7ff,stroke:#4d94ff,stroke-width:2px;
-    style MFA fill:#e6f7ff,stroke:#4d94ff,stroke-width:2px;
-    style DevicePosture fill:#e6f7ff,stroke:#4d94ff,stroke-width:2px;
-    style MonitoringAnalytics fill:#f0fff0,stroke:#66cc66,stroke-width:2px;
-    style ThreatIntelligence fill:#f0fff0,stroke:#66cc66,stroke-width:2px;
-    style SIEM fill:#f0fff0,stroke:#66cc66,stroke-width:2px;
-    style Segment1 fill:#fff5e6,stroke:#ff9900,stroke-width:2px;
-    style Segment2 fill:#fff5e6,stroke:#ff9900,stroke-width:2px;
-    style Segment3 fill:#fff5e6,stroke:#ff9900,stroke-width:2px;
+    %% Policy Plane
+    subgraph PP [Policy Plane]
+        PolicyEngine[fa:fa-shield Policy Engine]
+        PolicyAdministrator[fa:fa-cog Policy Administrator]
+        PolicyEnforcementPoint[fa:fa-lock Policy Enforcement Point]
+        PolicyEngine --> PolicyAdministrator
+        PolicyAdministrator --> PolicyEnforcementPoint
+    end
+
+    %% Continuous Diagnostics & Mitigation
+    subgraph CDM [Continuous Diagnostics &amp; Mitigation]
+        MonitoringAnalytics[fa:fa-chart-line Monitoring & Analytics]
+        ThreatIntelligence[fa:fa-bolt Threat Intelligence]
+        SIEM[fa:fa-bar-chart SIEM]
+    end
+
+    %% Protected Resources
+    subgraph PR [Protected Resources]
+        Segment1[fa:fa-server Application]
+        Segment2[fa:fa-database Data]
+        Segment3[fa:fa-cloud Service]
+    end
+
+    %% Primary Flow Connections
+    UserDevice --> |Access Request| PolicyEnforcementPoint
+    PolicyEnforcementPoint --> Segment1
+    PolicyEnforcementPoint --> Segment2
+    PolicyEnforcementPoint --> Segment3
+
+    %% Trust Signal Connections
+    UserDevice --> |User Credentials| IAM
+    UserDevice --> |Device Information| DevicePosture
+    IAM --> |Identity Context| PolicyEngine
+    DevicePosture --> |Device Context| PolicyEngine
+    MonitoringAnalytics --> |Behavioral Data| PolicyEngine
+    ThreatIntelligence --> |Threat Context| PolicyEngine
+    SIEM --> |Security Events| PolicyEngine
+
+    %% Styling Classes
+    class UD access-origin
+    class AA authentication
+    class PP policy-plane
+    class CDM diagnostics
+    class PR resources
+
+    classDef access-origin fill:#e6f3ff,stroke:#6cb0f5,stroke-width:2px;
+    classDef authentication fill:#e6f7ff,stroke:#4d94ff,stroke-width:2px;
+    classDef policy-plane fill:#fff0f5,stroke:#ff69b4,stroke-width:2px;
+    classDef diagnostics fill:#f0fff0,stroke:#66cc66,stroke-width:2px;
+    classDef resources fill:#fff5e6,stroke:#ff9900,stroke-width:2px;
 🧩 Repository Structure
 bash
 Copy code
