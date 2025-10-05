@@ -49,19 +49,18 @@ It blends **visual analogies**, **interactive hands-on labs**, and **real-world 
 
 ## 📊 Zero Trust Architecture (Interactive Diagram)
 
-> Visual representation of Zero Trust policy, authentication, and enforcement planes.
-
 flowchart TD
     %% User & Device Access
-    subgraph UD [User &amp; Device Access]
+    subgraph UD [User & Device Access]
         UserDevice[fa:fa-laptop User & Device]
     end
 
     %% Authentication & Authorization
-    subgraph AA [Authentication &amp; Authorization]
+    subgraph AA [Authentication & Authorization]
         IAM[fa:fa-users Identity & Access Management]
         MFA[fa:fa-key Multi-Factor Authentication]
         DevicePosture[fa:fa-mobile Device Posture Validation]
+        
         MFA --> IAM
     end
 
@@ -70,12 +69,13 @@ flowchart TD
         PolicyEngine[fa:fa-shield Policy Engine]
         PolicyAdministrator[fa:fa-cog Policy Administrator]
         PolicyEnforcementPoint[fa:fa-lock Policy Enforcement Point]
+        
         PolicyEngine --> PolicyAdministrator
         PolicyAdministrator --> PolicyEnforcementPoint
     end
 
     %% Continuous Diagnostics & Mitigation
-    subgraph CDM [Continuous Diagnostics &amp; Mitigation]
+    subgraph CDM [Continuous Diagnostics & Mitigation]
         MonitoringAnalytics[fa:fa-chart-line Monitoring & Analytics]
         ThreatIntelligence[fa:fa-bolt Threat Intelligence]
         SIEM[fa:fa-bar-chart SIEM]
@@ -104,17 +104,18 @@ flowchart TD
     SIEM --> |Security Events| PolicyEngine
 
     %% Styling Classes
-    class UD access-origin
-    class AA authentication
-    class PP policy-plane
-    class CDM diagnostics
-    class PR resources
+    class UD access-origin;
+    class AA authentication;
+    class PP policy-plane;
+    class CDM diagnostics;
+    class PR resources;
 
     classDef access-origin fill:#e6f3ff,stroke:#6cb0f5,stroke-width:2px;
     classDef authentication fill:#e6f7ff,stroke:#4d94ff,stroke-width:2px;
     classDef policy-plane fill:#fff0f5,stroke:#ff69b4,stroke-width:2px;
     classDef diagnostics fill:#f0fff0,stroke:#66cc66,stroke-width:2px;
     classDef resources fill:#fff5e6,stroke:#ff9900,stroke-width:2px;
+ 
 🧩 Repository Structure
 bash
 Copy code
