@@ -6,7 +6,7 @@ default allow = false
 allowlist := {"ola", "admin"}
 
 # Allow rule: user must be in allowlist and making GET to /profiles
-allow if {
+allow {
     input.method == "GET"
     input.path == "/profiles"
     allowlist[input.user]
