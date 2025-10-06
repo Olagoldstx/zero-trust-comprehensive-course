@@ -197,3 +197,10 @@ flowchart LR
     style B fill:#fff0f5,stroke:#ff69b4,stroke-width:2px
     style C fill:#f0fff0,stroke:#66cc66,stroke-width:2px
     style D fill:#fff5e6,stroke:#ff9900,stroke-width:2px
+---
+
+## 🧠 Reflection
+
+- What’s the advantage of evaluating access every request?
+- Which new signals would you add (geo, MFA presence, network trust)?
+- What happens if time-based or risk-based inputs fail to load?
