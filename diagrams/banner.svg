@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="420" viewBox="0 0 1600 420">
+  <defs>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00c8ff" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#3af" stop-opacity="0.85"/>
+    </linearGradient>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1600" height="420" fill="#0b1420"/>
+  <!-- Subtle grid -->
+  <g opacity="0.12" stroke="#1d2b3b" stroke-width="1">
+    <g>
+      <line x1="0" y1="60" x2="1600" y2="60"/><line x1="0" y1="120" x2="1600" y2="120"/>
+      <line x1="0" y1="180" x2="1600" y2="180"/><line x1="0" y1="240" x2="1600" y2="240"/>
+      <line x1="0" y1="300" x2="1600" y2="300"/><line x1="0" y1="360" x2="1600" y2="360"/>
+    </g>
+    <g>
+      <line x1="200" y1="0" x2="200" y2="420"/><line x1="400" y1="0" x2="400" y2="420"/>
+      <line x1="600" y1="0" x2="600" y2="420"/><line x1="800" y1="0" x2="800" y2="420"/>
+      <line x1="1000" y1="0" x2="1000" y2="420"/><line x1="1200" y1="0" x2="1200" y2="420"/>
+      <line x1="1400" y1="0" x2="1400" y2="420"/>
+    </g>
+  </g>
+
+  <!-- Neon lock -->
+  <g transform="translate(220,80)" filter="url(#softGlow)">
+    <rect x="0" y="110" rx="18" ry="18" width="180" height="160" fill="none" stroke="url(#glow)" stroke-width="6"/>
+    <path d="M40 120 v-40 a50 50 0 0 1 100 0 v40" fill="none" stroke="url(#glow)" stroke-width="6"/>
+    <circle cx="90" cy="190" r="18" fill="none" stroke="url(#glow)" stroke-width="6"/>
+    <rect x="86" y="206" width="8" height="28" fill="url(#glow)"/>
+  </g>
+
+  <!-- Title -->
+  <g font-family="Inter, Segoe UI, Roboto, Arial" fill="#e6f2ff">
+    <text x="460" y="180" font-size="46" font-weight="800" letter-spacing="1"
+          style="text-shadow: 0 0 18px rgba(0, 200, 255, 0.45);">
+      ZERO TRUST NETWORK EX
+    </text>
+    <text x="460" y="230" font-size="30" font-weight="600" fill="#b6d7ff">
+      Comprehensive Course
+    </text>
+  </g>
+
+  <!-- Circuit accents -->
+  <g stroke="url(#glow)" opacity="0.55">
+    <path d="M460 260 h220" stroke-width="2"/>
+    <circle cx="680" cy="260" r="3" fill="#00c8ff"/>
+    <path d="M720 120 h60 v60" fill="none" stroke-width="2"/>
+    <circle cx="780" cy="180" r="3" fill="#00c8ff"/>
+    <path d="M540 110 v-30 h120" fill="none" stroke-width="2"/>
+    <circle cx="660" cy="80" r="3" fill="#00c8ff"/>
+  </g>
+</svg>
