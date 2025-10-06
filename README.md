@@ -49,71 +49,28 @@ It blends **visual analogies**, **interactive hands-on labs**, and **real-world 
 
 ## 📊 Zero Trust Architecture (Interactive Diagram)
 
-flowchart TD
-  %% User & Device Access
-  subgraph UD["User &amp; Device Access"]
-    UserDevice["User + Device"]
-  end
+graph LR
+    A[("fa:fa-laptop 1. User/Device Request")] --> B[("fa:fa-lock 2. Policy Enforcement Point")];
+    B --> C{"fa:fa-brain 3. Policy Engine"};
+    
+    subgraph "4. Gather Context & Signals"
+        C1[("fa:fa-user-check IAM")] --> C;
+        C2[("fa:fa-mobile Device Posture")] --> C;
+        C3[("fa:fa-bolt Threat Intel")] --> C;
+    end
+    
+    C --> D{fa:fa-cog 5. Access Decision};
+    D -->|Allow| E[("fa:fa-lock-open 6. Access Granted")];
+    D -->|Deny| F[("fa:fa-lock 6. Access Blocked")];
+    E --> G[("fa:fa-server 7. Protected Resource")];
 
-  %% Authentication & Authorization
-  subgraph AA["Authentication &amp; Authorization"]
-    IAM["Identity and Access Management"]
-    MFA["Multi-Factor Authentication"]
-    DevicePosture["Device Posture Validation"]
-    MFA --> IAM
-  end
-
-  %% Policy Plane
-  subgraph PP["Policy Plane"]
-    PolicyEngine["Policy Engine"]
-    PolicyAdministrator["Policy Administrator"]
-    PEP["Policy Enforcement Point"]
-    PolicyEngine --> PolicyAdministrator
-    PolicyAdministrator --> PEP
-  end
-
-  %% Continuous Diagnostics & Mitigation
-  subgraph CDM["Continuous Diagnostics &amp; Mitigation"]
-    Monitoring["Monitoring and Analytics"]
-    ThreatIntel["Threat Intelligence"]
-    SIEM["SIEM"]
-  end
-
-  %% Protected Resources
-  subgraph PR["Protected Resources"]
-    App["Application"]
-    Data["Data"]
-    Service["Service"]
-  end
-
-  %% Primary Flow
-  UserDevice -->|Access Request| PEP
-  PEP --> App
-  PEP --> Data
-  PEP --> Service
-
-  %% Trust Signals
-  UserDevice -->|User Credentials| IAM
-  UserDevice -->|Device Information| DevicePosture
-  IAM -->|Identity Context| PolicyEngine
-  DevicePosture -->|Device Context| PolicyEngine
-  Monitoring -->|Behavioral Data| PolicyEngine
-  ThreatIntel -->|Threat Context| PolicyEngine
-  SIEM -->|Security Events| PolicyEngine
-
-  %% Styling
-  classDef access fill:#e6f3ff,stroke:#6cb0f5,stroke-width:2px
-  classDef auth fill:#e6f7ff,stroke:#4d94ff,stroke-width:2px
-  classDef policy fill:#fff0f5,stroke:#ff69b4,stroke-width:2px
-  classDef cdm fill:#f0fff0,stroke:#66cc66,stroke-width:2px
-  classDef res fill:#fff5e6,stroke:#ff9900,stroke-width:2px
-
-  class UD access
-  class AA auth
-  class PP policy
-  class CDM cdm
-  class PR res
-
+    style A fill:#e6f3ff,stroke:#6cb0f5,stroke-width:2px;
+    style B fill:#fff0f5,stroke:#ff69b4,stroke-width:2px;
+    style C fill:#fff0f5,stroke:#ff69b4,stroke-width:2px;
+    style D fill:#fff0f5,stroke:#ff69b4,stroke-width:2px;
+    style E fill:#f0fff0,stroke:#66cc66,stroke-width:2px;
+    style F fill:#fff0f0,stroke:#ff6666,stroke-width:2px;
+    style G fill:#fff5e6,stroke:#ff9900,stroke-width:2px; 
  
 🧩 Repository Structure
 bash
