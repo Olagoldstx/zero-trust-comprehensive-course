@@ -48,30 +48,51 @@ It blends **visual analogies**, **interactive hands-on labs**, and **real-world 
 ---
 
 ## 📊 Zero Trust Architecture (Interactive Diagram)
-
-graph LR
-    A[("fa:fa-laptop 1. User/Device Request")] --> B[("fa:fa-lock 2. Policy Enforcement Point")];
-    B --> C{"fa:fa-brain 3. Policy Engine"};
-    
-    subgraph "4. Gather Context & Signals"
-        C1[("fa:fa-user-check IAM")] --> C;
-        C2[("fa:fa-mobile Device Posture")] --> C;
-        C3[("fa:fa-bolt Threat Intel")] --> C;
-    end
-    
-    C --> D{fa:fa-cog 5. Access Decision};
-    D -->|Allow| E[("fa:fa-lock-open 6. Access Granted")];
-    D -->|Deny| F[("fa:fa-lock 6. Access Blocked")];
-    E --> G[("fa:fa-server 7. Protected Resource")];
-
-    style A fill:#e6f3ff,stroke:#6cb0f5,stroke-width:2px;
-    style B fill:#fff0f5,stroke:#ff69b4,stroke-width:2px;
-    style C fill:#fff0f5,stroke:#ff69b4,stroke-width:2px;
-    style D fill:#fff0f5,stroke:#ff69b4,stroke-width:2px;
-    style E fill:#f0fff0,stroke:#66cc66,stroke-width:2px;
-    style F fill:#fff0f0,stroke:#ff6666,stroke-width:2px;
-    style G fill:#fff5e6,stroke:#ff9900,stroke-width:2px; 
  
+graph TD
+    subgraph Enterprise Environment
+        direction LR
+        subgraph Control Plane
+            PolicyEngine[("fa:fa-brain Policy Decision Point")] --> PolicyAdmin[("fa:fa-cog Policy Administration Point")];
+            PolicyAdmin --> PolicyEnforcement[("fa:fa-lock Policy Enforcement Point")];
+        end
+
+        subgraph Continuous Trust Evaluation
+            SIEM[("fa:fa-bar-chart SIEM/SOAR")] --> PolicyEngine;
+            ThreatIntel[("fa:fa-bolt Threat Intelligence Feed")] --> PolicyEngine;
+            DevicePosture[("fa:fa-mobile Device Compliance Check")] --> PolicyEngine;
+        end
+
+        subgraph Identity & Access
+            IAM[("fa:fa-users Identity Provider")] --> PolicyEngine;
+            MFA[("fa:fa-key Adaptive Authentication")] --> IAM;
+        end
+
+        subgraph Protected Resources
+            PolicyEnforcement --> App1[("fa:fa-server Application Server")];
+            PolicyEnforcement --> Data1[("fa:fa-database Data Repository")];
+            PolicyEnforcement --> Service1[("fa:fa-cloud Cloud Service")];
+        end
+    end
+
+    subgraph External Access Request
+        UserDevice(("fa:fa-laptop User & Device")) -- Requests Access --> PolicyEnforcement;
+        UserDevice --> |Submits Credentials| IAM;
+        UserDevice --> |Provides Device Data| DevicePosture;
+    end
+
+    style UserDevice fill:#e6f3ff,stroke:#6cb0f5,stroke-width:2px;
+    style PolicyEnforcement fill:#fff0f5,stroke:#ff69b4,stroke-width:2px;
+    style PolicyEngine fill:#fff0f5,stroke:#ff69b4,stroke-width:2px;
+    style PolicyAdmin fill:#fff0f5,stroke:#ff69b4,stroke-width:2px;
+    style IAM fill:#e6f7ff,stroke:#4d94ff,stroke-width:2px;
+    style MFA fill:#e6f7ff,stroke:#4d94ff,stroke-width:2px;
+    style DevicePosture fill:#e6f7ff,stroke:#4d94ff,stroke-width:2px;
+    style SIEM fill:#f0fff0,stroke:#66cc66,stroke-width:2px;
+    style ThreatIntel fill:#f0fff0,stroke:#66cc66,stroke-width:2px;
+    style App1 fill:#fff5e6,stroke:#ff9900,stroke-width:2px;
+    style Data1 fill:#fff5e6,stroke:#ff9900,stroke-width:2px;
+    style Service1 fill:#fff5e6,stroke:#ff9900,stroke-width:2px; 
 🧩 Repository Structure
 bash
 Copy code
