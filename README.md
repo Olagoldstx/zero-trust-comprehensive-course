@@ -33,6 +33,7 @@ It blends **visual analogies**, **interactive hands-on labs**, and **real-world 
 | [🌐 03 – Network Micro-Segmentation](docs/03-beginners-foundation.md) | Network trust boundaries and isolation | VPC segmentation labs |
 | [⚙️ 04 – Policy & Enforcement](docs/04-policy-plane.md) | Policy engine, enforcement points, and telemetry | ZTA policy deployment |
 | [📊 05 – Monitoring & Threat Intel](docs/05-observability.md) | SIEM, CDM, analytics, and telemetry integration | SOC & SIEM integration labs |
+| [🧠 Threat Modeling Lab](docs/models/01-threat-model.md) | Identify protect surfaces, adversaries, and policy entry points | OPA access control policy demo |
 | [🚀 Career Module](docs/99-career-paths.md) | Roles, interview prep, and GitHub portfolio setup | Resume + LinkedIn guide |
 
 ---
