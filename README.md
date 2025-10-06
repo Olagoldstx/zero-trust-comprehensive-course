@@ -28,14 +28,17 @@ It blends **visual analogies**, **interactive hands-on labs**, and **real-world 
 
 | Module | Focus Area | Hands-On Labs |
 |:--|:--|:--|
-| [📘 01 – Zero Trust Foundation](docs/01-zero-trust-fundamentals.md) | Core concepts, principles, and NIST 800-207 framework | Policy model visualization |
-| [🔐 02 – Identity & Access Control](docs/02-identity-access-control.md) | IAM, MFA, continuous authentication | AWS/Azure/GCP IAM labs |
-| [🌐 03 – Network Micro-Segmentation](docs/03-beginners-foundation.md) | Network trust boundaries and isolation | VPC segmentation labs |
-| [⚙️ 04 – Policy & Enforcement](docs/04-policy-plane.md) | Policy engine, enforcement points, and telemetry | ZTA policy deployment |
-| [📊 05 – Monitoring & Threat Intel](docs/05-observability.md) | SIEM, CDM, analytics, and telemetry integration | SOC & SIEM integration labs |
-| [🧠 Threat Modeling Lab](docs/models/01-threat-model.md) | Identify protect surfaces, adversaries, and policy entry points | OPA access control policy demo |
-| [🚀 Career Module](docs/99-career-paths.md) | Roles, interview prep, and GitHub portfolio setup | Resume + LinkedIn guide |
 
+| Module | Focus Area | Hands-On Labs |
+|:--|:--|:--|
+| [📘 01 – Executive Summary](docs/01-executive-summary.md) | Course overview and learning objectives | Course orientation |
+| [👥 02 – HR & Hiring Guide](docs/02-hr-hiring-guide.md) | Team building and career preparation | Role planning exercises |
+| [🔰 03 – Beginner's Foundation](docs/03-beginners-foundation.md) | Core concepts and NIST 800-207 framework | Policy model visualization |
+| [🎯 04 – Core Concepts Deep Dive](docs/04-core-concepts-deepdive.md) | Policy engine, enforcement points, and telemetry | ZTA policy deployment |
+| [☁️ 05 – Multi-Cloud Implementation](docs/05-multi-cloud-implementation.md) | AWS, Azure, GCP Zero Trust patterns | Multi-cloud labs |
+| [📊 06 – Case Study & Analysis](docs/06-case-study-failure-analysis.md) | Real-world implementations and lessons | Incident response scenarios |
+| [🚀 07 – Advanced Patterns](docs/07-advanced-patterns.md) | Enterprise-scale Zero Trust architecture | Advanced policy design |
+| [🧠 Threat Modeling Lab](docs/models/01-threat-model.md) | Identify protect surfaces and adversaries | OPA access control policy demo |
 ---
 
 ## 🧠 What You’ll Learn
