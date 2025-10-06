@@ -140,8 +140,8 @@ flowchart LR
     style B fill:#fff0f5,stroke:#ff69b4,stroke-width:2px
     style C fill:#f0fff0,stroke:#66cc66,stroke-width:2px
     style D fill:#fff5e6,stroke:#ff9900,stroke-width:2px
-eof
 
+eof
 ---
 
 ## 🧠 Zero Trust Runtime Flow (OPA ↔ Proxy ↔ Target App)
