@@ -1,0 +1,8 @@
+{
+  "user": "employee",
+  "method": "GET", 
+  "path": "/internal",
+  "role": "employee",
+  "device": {"compliant": true, "encrypted": false},
+  "context": {"risk": 20, "mfa_passed": false, "working_hours": true}
+}

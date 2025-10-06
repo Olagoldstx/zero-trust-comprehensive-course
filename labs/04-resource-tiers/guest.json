@@ -1,0 +1,8 @@
+{
+  "user": "guest",
+  "method": "GET",
+  "path": "/confidential", 
+  "role": "guest",
+  "device": {"compliant": true, "encrypted": false},
+  "context": {"risk": 20, "mfa_passed": false, "working_hours": true}
+}

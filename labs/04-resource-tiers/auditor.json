@@ -1,0 +1,8 @@
+{
+  "user": "auditor", 
+  "method": "GET",
+  "path": "/regulated",
+  "role": "auditor",
+  "device": {"compliant": true, "encrypted": true},
+  "context": {"risk": 5, "mfa_passed": true, "working_hours": true}
+}

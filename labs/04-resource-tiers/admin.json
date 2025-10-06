@@ -1,0 +1,8 @@
+{
+  "user": "ola",
+  "method": "GET",
+  "path": "/confidential",
+  "role": "admin",
+  "device": {"compliant": true, "encrypted": true},
+  "context": {"risk": 20, "mfa_passed": true, "working_hours": true}
+}
