@@ -49,50 +49,75 @@ It blends **visual analogies**, **interactive hands-on labs**, and **real-world 
 
 ## 📊 Zero Trust Architecture (Interactive Diagram)
  
-graph TD
-    subgraph Enterprise Environment
-        direction LR
-        subgraph Control Plane
-            PolicyEngine[("fa:fa-brain Policy Decision Point")] --> PolicyAdmin[("fa:fa-cog Policy Administration Point")];
-            PolicyAdmin --> PolicyEnforcement[("fa:fa-lock Policy Enforcement Point")];
-        end
+## 📊 Zero Trust Architecture (Interactive Diagram)
 
-        subgraph Continuous Trust Evaluation
-            SIEM[("fa:fa-bar-chart SIEM/SOAR")] --> PolicyEngine;
-            ThreatIntel[("fa:fa-bolt Threat Intelligence Feed")] --> PolicyEngine;
-            DevicePosture[("fa:fa-mobile Device Compliance Check")] --> PolicyEngine;
-        end
+```mermaid
+flowchart TD
+  %% User & Device Access
+  subgraph UD["User &amp; Device Access"]
+    UserDevice["User + Device"]
+  end
 
-        subgraph Identity & Access
-            IAM[("fa:fa-users Identity Provider")] --> PolicyEngine;
-            MFA[("fa:fa-key Adaptive Authentication")] --> IAM;
-        end
+  %% Authentication & Authorization
+  subgraph AA["Authentication &amp; Authorization"]
+    IAM["Identity and Access Management"]
+    MFA["Multi-Factor Authentication"]
+    DevicePosture["Device Posture Validation"]
+    MFA --> IAM
+  end
 
-        subgraph Protected Resources
-            PolicyEnforcement --> App1[("fa:fa-server Application Server")];
-            PolicyEnforcement --> Data1[("fa:fa-database Data Repository")];
-            PolicyEnforcement --> Service1[("fa:fa-cloud Cloud Service")];
-        end
-    end
+  %% Policy Plane
+  subgraph PP["Policy Plane"]
+    PolicyEngine["Policy Engine"]
+    PolicyAdministrator["Policy Administrator"]
+    PEP["Policy Enforcement Point"]
+    PolicyEngine --> PolicyAdministrator
+    PolicyAdministrator --> PEP
+  end
 
-    subgraph External Access Request
-        UserDevice(("fa:fa-laptop User & Device")) -- Requests Access --> PolicyEnforcement;
-        UserDevice --> |Submits Credentials| IAM;
-        UserDevice --> |Provides Device Data| DevicePosture;
-    end
+  %% Continuous Diagnostics & Mitigation
+  subgraph CDM["Continuous Diagnostics &amp; Mitigation"]
+    Monitoring["Monitoring and Analytics"]
+    ThreatIntel["Threat Intelligence"]
+    SIEM["SIEM"]
+  end
 
-    style UserDevice fill:#e6f3ff,stroke:#6cb0f5,stroke-width:2px;
-    style PolicyEnforcement fill:#fff0f5,stroke:#ff69b4,stroke-width:2px;
-    style PolicyEngine fill:#fff0f5,stroke:#ff69b4,stroke-width:2px;
-    style PolicyAdmin fill:#fff0f5,stroke:#ff69b4,stroke-width:2px;
-    style IAM fill:#e6f7ff,stroke:#4d94ff,stroke-width:2px;
-    style MFA fill:#e6f7ff,stroke:#4d94ff,stroke-width:2px;
-    style DevicePosture fill:#e6f7ff,stroke:#4d94ff,stroke-width:2px;
-    style SIEM fill:#f0fff0,stroke:#66cc66,stroke-width:2px;
-    style ThreatIntel fill:#f0fff0,stroke:#66cc66,stroke-width:2px;
-    style App1 fill:#fff5e6,stroke:#ff9900,stroke-width:2px;
-    style Data1 fill:#fff5e6,stroke:#ff9900,stroke-width:2px;
-    style Service1 fill:#fff5e6,stroke:#ff9900,stroke-width:2px; 
+  %% Protected Resources
+  subgraph PR["Protected Resources"]
+    App["Application"]
+    Data["Data"]
+    Service["Service"]
+  end
+
+  %% Primary Flow
+  UserDevice -->|Access Request| PEP
+  PEP --> App
+  PEP --> Data
+  PEP --> Service
+
+  %% Trust Signals
+  UserDevice -->|User Credentials| IAM
+  UserDevice -->|Device Information| DevicePosture
+  IAM -->|Identity Context| PolicyEngine
+  DevicePosture -->|Device Context| PolicyEngine
+  Monitoring -->|Behavioral Data| PolicyEngine
+  ThreatIntel -->|Threat Context| PolicyEngine
+  SIEM -->|Security Events| PolicyEngine
+
+  %% Styling
+  classDef access fill:#e6f3ff,stroke:#6cb0f5,stroke-width:2px
+  classDef auth   fill:#e6f7ff,stroke:#4d94ff,stroke-width:2px
+  classDef policy fill:#fff0f5,stroke:#ff69b4,stroke-width:2px
+  classDef cdm    fill:#f0fff0,stroke:#66cc66,stroke-width:2px
+  classDef res    fill:#fff5e6,stroke:#ff9900,stroke-width:2px
+
+  class UD access
+  class AA auth
+  class PP policy
+  class CDM cdm
+  class PR res
+```
+    
 🧩 Repository Structure
 bash
 Copy code
