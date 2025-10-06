@@ -1,0 +1,12 @@
+{
+  "user": "ola",
+  "role": "admin",
+  "service": "hr-system",
+  "department": "engineering",
+  "context": {
+    "risk": 20,
+    "delegated_allow": true,
+    "origin_verified": true,
+    "service_compliant": true
+  }
+}

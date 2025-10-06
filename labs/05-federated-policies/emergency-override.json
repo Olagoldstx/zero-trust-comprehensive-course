@@ -1,0 +1,10 @@
+{
+  "user": "federation-admin",
+  "role": "admin", 
+  "context": {
+    "risk": 60,
+    "delegated_allow": false,
+    "origin_verified": true,
+    "emergency_mode": true
+  }
+}

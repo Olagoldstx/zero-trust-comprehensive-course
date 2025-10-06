@@ -1,0 +1,11 @@
+{
+  "user": "ola", 
+  "role": "contractor",
+  "service": "hr-system",
+  "context": {
+    "risk": 20,
+    "delegated_allow": false,
+    "origin_verified": true,
+    "service_compliant": true
+  }
+}

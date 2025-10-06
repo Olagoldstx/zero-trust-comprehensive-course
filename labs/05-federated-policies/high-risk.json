@@ -1,0 +1,10 @@
+{
+  "user": "admin",
+  "role": "admin",
+  "context": {
+    "risk": 45,
+    "delegated_allow": true, 
+    "origin_verified": true,
+    "service_compliant": true
+  }
+}
