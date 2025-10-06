@@ -49,8 +49,6 @@ It blends **visual analogies**, **interactive hands-on labs**, and **real-world 
 
 ## 📊 Zero Trust Architecture (Interactive Diagram)
  
-## 📊 Zero Trust Architecture (Interactive Diagram)
-
 ```mermaid
 flowchart TD
   %% User & Device Access
