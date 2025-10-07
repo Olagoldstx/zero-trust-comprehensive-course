@@ -1,0 +1,10 @@
+{"ts":"2025-10-07T12:00:00-07:00","user":"attacker","risk":90,"device_compliant":false,"decision_id":"alert-1","result":false}
+{"ts":"2025-10-07T12:00:01-07:00","user":"hacker","risk":95,"device_compliant":false,"decision_id":"alert-2","result":false}
+{"ts":"2025-10-07T12:00:02-07:00","user":"suspicious","risk":85,"device_compliant":false,"decision_id":"alert-3","result":false}
+{"ts":"2025-10-07T12:00:03-07:00","user":"malicious","risk":80,"device_compliant":false,"decision_id":"alert-4","result":false}
+{"ts":"2025-10-07T12:00:04-07:00","user":"intruder","risk":75,"device_compliant":false,"decision_id":"alert-5","result":false}
+{"ts":"2025-10-07T12:00:05-07:00","user":"breacher","risk":70,"device_compliant":false,"decision_id":"alert-6","result":false}
+{"ts":"2025-10-07T12:00:06-07:00","user":"unauthorized","risk":65,"device_compliant":false,"decision_id":"alert-7","result":false}
+{"ts":"2025-10-07T12:00:07-07:00","user":"violator","risk":60,"device_compliant":false,"decision_id":"alert-8","result":false}
+{"ts":"2025-10-07T12:00:08-07:00","user":"ola","risk":25,"device_compliant":true,"decision_id":"alert-9","result":true}
+{"ts":"2025-10-07T12:00:09-07:00","user":"admin","risk":30,"device_compliant":true,"decision_id":"alert-10","result":true}
