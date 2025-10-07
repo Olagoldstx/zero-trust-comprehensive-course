@@ -1,0 +1,32 @@
+flowchart TB
+    subgraph CloudProviders [Cloud Environments]
+        A[AWS CloudWatch<br/>Logs & Events]
+        B[Azure Monitor<br/>Activity Logs] 
+        C[GCP Operations<br/>Suite Logs]
+    end
+    
+    subgraph IngestionLayer [Unified Ingestion Layer]
+        D[Event Collector] --> E[Normalization Engine]
+        E --> F[Common Schema Mapper]
+    end
+    
+    subgraph CorrelationLayer [Correlation & Analytics]
+        G[Cross-Cloud<br/>Correlation Engine] --> H[Anomaly Detection]
+        H --> I[Risk Scoring]
+    end
+    
+    subgraph ResponseLayer [Unified Response]
+        J[SOAR Integration] --> K[Alert Management]
+        L[Zero-Trust Dashboard] --> M[Real-time Visualization]
+    end
+    
+    A --> D
+    B --> D
+    C --> D
+    F --> G
+    I --> J
+    I --> L
+    
+    style CloudProviders fill:#e3f2fd
+    style CorrelationLayer fill:#fff3e0
+    style ResponseLayer fill:#e8f5e8
