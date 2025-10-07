@@ -1,0 +1,9 @@
+flowchart LR
+  A[OPA Decisions] --> B[Decision Logs (JSONL)]
+  B --> C[Metrics (deny_ratio)]
+  C --> D{Threshold?}
+  D -- Yes --> E[Alert 🚨]
+  D -- No --> F[Dashboard 📊]
+
+  classDef node fill:#f7f7ff,stroke:#555,stroke-width:1.5px;
+  class A,B,C,D,E,F node;
