@@ -8,20 +8,23 @@ if [[ ! -f "$ALERT_FILE" ]]; then
   exit 1
 fi
 
-# Get last WINDOW lines
-tail -n "$WINDOW" "$ALERT_FILE" > /tmp/analysis_events.jsonl 2>/dev/null
-
-# Simple counting
+# Use jq to process JSON properly
 allow_count=0
 deny_count=0
 
+# Process last WINDOW lines with jq
 while IFS= read -r line; do
-  if echo "$line" | grep -q '"result":true'; then
-    ((allow_count++))
-  elif echo "$line" | grep -q '"result":false'; then
-    ((deny_count++))
+  if [[ -n "$line" ]]; then
+    risk=$(echo "$line" | jq -r '.risk' 2>/dev/null)
+    if [[ "$risk" =~ ^[0-9]+$ ]]; then
+      if [[ "$risk" -gt 70 ]]; then
+        ((deny_count++))
+      else
+        ((allow_count++))
+      fi
+    fi
   fi
-done < /tmp/analysis_events.jsonl
+done < <(tail -n "$WINDOW" "$ALERT_FILE")
 
 # Calculate ratios
 total=$((allow_count + deny_count))

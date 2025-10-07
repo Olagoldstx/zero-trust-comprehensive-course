@@ -1,90 +1,61 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-FILE="${1:-decision_logs.jsonl}"
-WINDOW=50
+ALERT_FILE="${1:-labs/10-siem-analytics/decision_logs.jsonl}"
+WINDOW="${WINDOW:-50}"
 
-echo "📊 Analyzing last $WINDOW events from: $FILE"
-
-if [ ! -f "$FILE" ]; then
-    echo "❌ Error: File $FILE not found"
-    exit 1
+if [[ ! -f "$ALERT_FILE" ]]; then
+  echo "❌ Error: Alert file not found: $ALERT_FILE" >&2
+  exit 1
 fi
 
-if [ ! -s "$FILE" ]; then
-    echo "❌ Error: File $FILE is empty"
-    exit 1
-fi
+echo "📊 Analyzing last $WINDOW events from: $ALERT_FILE" >&2
 
-# Get actual line count
-total_lines=$(wc -l < "$FILE")
-echo "Total lines in file: $total_lines"
+# Count total lines
+total_lines=$(wc -l < "$ALERT_FILE")
+echo "Total lines in file: $total_lines" >&2
 
-# Use the smaller of WINDOW or total_lines
-if [ "$total_lines" -lt "$WINDOW" ]; then
-    actual_window=$total_lines
-else
-    actual_window=$WINDOW
-fi
+# Get last WINDOW lines
+tail -n "$WINDOW" "$ALERT_FILE" > "/tmp/last_${WINDOW}_events.jsonl"
 
-echo "Analyzing last $actual_window events"
+echo "Analyzing last $WINDOW events" >&2
 
-# Extract the last N lines to a temp file
-tail -n "$actual_window" "$FILE" > "/tmp/analysis_window.jsonl"
+# Count allows and denies using simple grep
+allow_count=$(grep -c '"result":true' "/tmp/last_${WINDOW}_events.jsonl" || echo "0")
+deny_count=$(grep -c '"result":false' "/tmp/last_${WINDOW}_events.jsonl" || echo "0")
 
-# Count using reliable methods
-total=$(wc -l < "/tmp/analysis_window.jsonl")
-
-# Method 1: Use jq to count true/false results
-allow=$(jq -r 'select(.result == true) | .result' "/tmp/analysis_window.jsonl" 2>/dev/null | wc -l || echo "0")
-deny=$(jq -r 'select(.result == false) | .result' "/tmp/analysis_window.jsonl" 2>/dev/null | wc -l || echo "0")
-
-# Method 2: Alternative counting if above fails
-if [ "$allow" -eq 0 ] && [ "$deny" -eq 0 ]; then
-    echo "Using alternative counting method..."
-    allow=$(grep -c '"result":true' "/tmp/analysis_window.jsonl" || echo "0")
-    deny=$(grep -c '"result":false' "/tmp/analysis_window.jsonl" || echo "0")
-fi
-
-# Verify counts make sense
-if [ $((allow + deny)) -ne $total ] && [ $total -gt 0 ]; then
-    echo "⚠️  Count mismatch: allow($allow) + deny($deny) != total($total)"
-    # Force reasonable values
-    if [ $((allow + deny)) -gt $total ]; then
-        ratio=$((total / (allow + deny)))
-        allow=$((allow / ratio))
-        deny=$((deny / ratio))
-    fi
-fi
+echo "Using alternative counting method..." >&2
+echo "Allowed: $allow_count" >&2
+echo "Denied: $deny_count" >&2
 
 # Calculate percentages safely
-if [ "$total" -gt 0 ]; then
-    deny_ratio=$(echo "scale=3; $deny / $total" | bc)
-    allow_pct=$(echo "scale=1; ($allow / $total) * 100" | bc)
-    deny_pct=$(echo "scale=1; ($deny / $total) * 100" | bc)
+if [[ $WINDOW -gt 0 ]]; then
+  allow_pct=$(echo "scale=2; $allow_count / $WINDOW * 100" | bc | awk '{printf "%.1f", $0}')
+  deny_pct=$(echo "scale=2; $deny_count / $WINDOW * 100" | bc | awk '{printf "%.1f", $0}')
+  deny_ratio=$(echo "scale=2; $deny_count / $WINDOW" | bc | awk '{printf "%.2f", $0}')
 else
-    deny_ratio=0
-    allow_pct=0
-    deny_pct=0
+  allow_pct="0"
+  deny_pct="0" 
+  deny_ratio="0"
 fi
 
-echo "=== FINAL RESULTS ==="
-echo "Window size: $actual_window"
-echo "Total events: $total"
-echo "Allowed: $allow ($allow_pct%)"
-echo "Denied: $deny ($deny_pct%)"
-echo "Deny ratio: $deny_ratio"
+echo "=== FINAL RESULTS ===" >&2
+echo "Window size: $WINDOW" >&2
+echo "Total events: $WINDOW" >&2
+echo "Allowed: $allow_count ($allow_pct%)" >&2
+echo "Denied: $deny_count ($deny_pct%)" >&2
+echo "Deny ratio: $deny_ratio" >&2
 
-# Create JSON output
+# Output JSON for other scripts to parse
 cat << EOF
 {
-  "window": $total,
-  "allow": $allow,
-  "deny": $deny,
-  "deny_ratio": $deny_ratio,
-  "allow_percentage": $allow_pct,
-  "deny_percentage": $deny_pct
+  "window": $WINDOW,
+  "totals": {
+    "allow": $allow_count,
+    "deny": $deny_count,
+    "deny_ratio": $deny_ratio,
+    "allow_percentage": $allow_pct,
+    "deny_percentage": $deny_pct
+  }
 }
 EOF
-
-# Cleanup
-rm -f "/tmp/analysis_window.jsonl"

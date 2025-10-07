@@ -1,0 +1,10 @@
+flowchart LR
+  A[SIEM Metrics] --> B{Threshold Exceeded?}
+  B -- Yes --> C[SOAR Response Engine]
+  C --> D[Action Log]
+  D --> E[Adaptive Policy Updater]
+  E --> F[OPA Policy Mode = Restricted]
+  F --> A
+
+  classDef node fill:#eef5ff,stroke:#555,stroke-width:1.5px;
+  class A,B,C,D,E,F node;
