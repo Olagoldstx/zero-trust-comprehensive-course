@@ -114,3 +114,59 @@ decision_reason := "emergency_override" if {
 decision_reason := "denied" if {
     not allow
 }
+package risk.adaptation
+
+default allow = false
+
+# Just-in-time grant with adaptive conditions
+allow if {
+    input.user == "ola"
+    input.role == "admin"
+    input.device.compliant
+    input.context.risk <= 40
+    now := time.now_ns
+    expiry := input.context.grant_time + 15 * 60 * 1e9  # 15-min window
+    now < expiry
+}
+⚙️ Step 3 – Simulate Inputs
+bash
+Copy code
+# Good: low risk, within 15 min
+cat > jit_good.json <<'EOF'
+{
+  "user": "ola",
+  "role": "admin",
+  "device": {"compliant": true},
+  "context": {
+    "risk": 25,
+    "grant_time": 1738830000000000000
+  }
+}
+EOF
+
+# Bad: expired grant or high risk
+cat > jit_bad.json <<'EOF'
+{
+  "user": "ola",
+  "role": "admin",
+  "device": {"compliant": true},
+  "context": {
+    "risk": 60,
+    "grant_time": 1738830000000000000
+  }
+}
+EOF
+🔍 Step 4 – Evaluate
+bash
+Copy code
+opa eval -i jit_good.json -d policy.rego "data.risk.adaptation.allow"
+opa eval -i jit_bad.json -d policy.rego "data.risk.adaptation.allow"
+✅ good → true  🚫 bad → false
+
+🧠 Reflection
+What’s the benefit of expiring access dynamically?
+
+How would you integrate this with session tokens or AWS STS assume-role?
+
+Which external telemetry (CrowdStrike, Okta RiskEngine, etc.) could feed your risk score?
+
