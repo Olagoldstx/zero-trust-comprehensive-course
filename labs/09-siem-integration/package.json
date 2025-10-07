@@ -1,0 +1,17 @@
+{
+  "name": "09-siem-integration",
+  "version": "1.0.0",
+  "description": "Zero-Trust SOC & SIEM Integration Lab",
+  "type": "module",
+  "main": "siem_server.js",
+  "scripts": {
+    "start": "node siem_server.js",
+    "test": "echo \"Test SIEM integration\""
+  },
+  "keywords": ["zero-trust", "siem", "security"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
