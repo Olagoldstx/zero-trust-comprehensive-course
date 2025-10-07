@@ -1,0 +1,13 @@
+{
+  "user": "jit-user",
+  "role": "operator",
+  "device": {"compliant": true},
+  "context": {
+    "risk": 15,
+    "sensitivity": "medium",
+    "grant_time": 1738830000000000000,
+    "grant_duration": 900000000000,
+    "geo_restricted": false,
+    "behavior_anomaly": true  # Anomaly detected!
+  }
+}

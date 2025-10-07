@@ -1,0 +1,14 @@
+{
+  "user": "emergency-responder",
+  "role": "emergency-admin",
+  "device": {"compliant": true},
+  "context": {
+    "risk": 70,
+    "sensitivity": "critical", 
+    "grant_time": 1738830000000000000,
+    "grant_duration": 300000000000,  # 5 minutes for emergency
+    "emergency_mode": true,
+    "geo_restricted": false,
+    "behavior_anomaly": false
+  }
+}

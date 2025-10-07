@@ -1,0 +1,13 @@
+{
+  "user": "ola",
+  "role": "admin",
+  "device": {"compliant": true},
+  "context": {
+    "risk": 20,
+    "sensitivity": "low",
+    "grant_time": 1738820000000000000,  # Older timestamp
+    "grant_duration": 900000000000,
+    "geo_restricted": false, 
+    "behavior_anomaly": false
+  }
+}

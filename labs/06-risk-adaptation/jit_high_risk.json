@@ -1,0 +1,13 @@
+{
+  "user": "admin",
+  "role": "admin", 
+  "device": {"compliant": true},
+  "context": {
+    "risk": 65,
+    "sensitivity": "high",
+    "grant_time": 1738830000000000000,
+    "grant_duration": 900000000000,
+    "geo_restricted": false,
+    "behavior_anomaly": false
+  }
+}
