@@ -1,4 +1,3 @@
-Copy everything below and paste it exactly as-is:
 
 # 🛰️ Lesson 9 — Automated SOC & SIEM Integration
 
@@ -88,25 +87,5 @@ How can risk context (geo, device posture, MFA) enrich events?
 How would you trigger alerts (Slack, PagerDuty, SIEM rules) from these events?
 
 🕸️ 5️⃣ Visual Overview
-flowchart TD
-    subgraph Policy["OPA Decision Plane"]
-        OPA[🧠 OPA Engine] --> LOGS[📄 Decision Logs]
-    end
+![SIEM Integration Diagram](../../diagrams/model-03-siem.mmd)
 
-    subgraph Forwarder["📡 Forwarder"]
-        LOGS --> FWD[Forward_to_SIEM.sh]
-    end
-
-    subgraph SOC["🛰️ Mock SIEM / SOC"]
-        FWD --> SIEM[SIEM Receiver (Node.js)]
-        SIEM --> Dashboard[📊 Dashboard / Alerts]
-    end
-
-    subgraph Containment["⚙️ Auto Response"]
-        SIEM --> Action[🚨 Block, Quarantine, Alert]
-    end
-
-    style OPA fill:#e6f7ff,stroke:#4d94ff,stroke-width:2px
-    style FWD fill:#fff0f5,stroke:#ff69b4,stroke-width:2px
-    style SIEM fill:#f0fff0,stroke:#66cc66,stroke-width:2px
-    style Action fill:#fff5e6,stroke:#ff9900,stroke-width:2px
