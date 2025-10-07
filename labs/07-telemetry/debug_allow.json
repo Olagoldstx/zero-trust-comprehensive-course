@@ -1,0 +1,11 @@
+{
+  "input": {
+    "user": "ola",
+    "device": {"compliant": true},
+    "context": {
+      "risk": 25,
+      "geo_restricted": false,
+      "time_restricted": false
+    }
+  }
+}

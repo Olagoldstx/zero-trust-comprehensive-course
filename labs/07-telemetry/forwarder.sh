@@ -72,3 +72,12 @@ echo "Press Ctrl+C to stop all services"
 # Cleanup on exit
 trap "kill $OPA_PID $FORWARDER_PID; exit" INT
 wait
+#!/bin/bash
+LOGFILE=opa_decision.log
+
+opa run -s -a :8181 policy.rego --set decision_logs.console=true 2>&1 | tee -a $LOGFILE &
+
+# Simulate ship to SIEM (mock endpoint)
+tail -f $LOGFILE | while read line; do
+  echo "Forwarding to SIEM: $line"
+done
