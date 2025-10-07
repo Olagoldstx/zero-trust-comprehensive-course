@@ -1,0 +1,11 @@
+{
+  "input": {
+    "user": "admin",
+    "device": {"compliant": true},
+    "context": {
+      "risk": 75,
+      "geo_restricted": false,
+      "time_restricted": false
+    }
+  }
+}

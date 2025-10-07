@@ -1,0 +1,11 @@
+{
+  "input": {
+    "user": "operator",
+    "device": {"compliant": false},
+    "context": {
+      "risk": 20,
+      "geo_restricted": false,
+      "time_restricted": false
+    }
+  }
+}

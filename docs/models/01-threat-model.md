@@ -204,3 +204,87 @@ flowchart LR
 - What’s the advantage of evaluating access every request?
 - Which new signals would you add (geo, MFA presence, network trust)?
 - What happens if time-based or risk-based inputs fail to load?
+
+## 📊 Lesson 7 — Telemetry-Driven Enforcement Flow
+
+```mermaid
+flowchart TD
+    A[👤 User Request] --> B[🛡️ PEP Proxy<br/>Enforcement Point]
+    
+    B --> C[⚖️ OPA Policy Engine<br/>Port: 8181]
+    
+    C --> D{🔍 Policy Decision}
+    D -->|✅ ALLOW| E[✅ Access Granted]
+    D -->|❌ DENY| F[❌ Access Denied]
+    
+    E --> G[🌐 Protected Resource]
+    F --> H[🚫 Blocked Request]
+    
+    %% Telemetry Flow
+    C --> I[📊 Telemetry Emission]
+    
+    I --> J[📈 Prometheus Metrics<br/>/metrics endpoint]
+    I --> K[📝 Decision Logs<br/>Structured JSON]
+    
+    J --> L[📟 Metrics Collector<br/>Scraping & Aggregation]
+    K --> M[🔗 SIEM Forwarder<br/>Real-time streaming]
+    
+    L --> N[📡 Time Series Database<br/>Prometheus TSDB]
+    M --> O[🏢 SIEM Platform<br/>Splunk/Elastic/Sentinel]
+    
+    N --> P[📊 Grafana Dashboards<br/>Real-time visualization]
+    O --> Q[🔍 Security Analytics<br/>Correlation & detection]
+    
+    P --> R[🎯 Operational Insights<br/>Performance & trends]
+    Q --> S[🚨 Security Alerts<br/>Anomaly detection]
+    
+    R --> T[📈 Capacity Planning<br/>& Optimization]
+    S --> U[🛡️ Automated Response<br/>& Remediation]
+    
+    %% Feedback Loops
+    U -.->|Risk Signals| C
+    T -.->|Performance Tuning| C
+    
+    %% Styling
+    classDef user fill:#E3F2FD,stroke:#1976D2
+    classDef enforcement fill:#E8F5E8,stroke:#4CAF50
+    classDef decision fill:#FFF3E0,stroke:#FF9800
+    classDef telemetry fill:#F3E5F5,stroke:#9C27B0
+    classDef storage fill:#E0F2F1,stroke:#009688
+    classDef visualization fill:#FFF8E1,stroke:#FFA000
+    classDef security fill:#FFEBEE,stroke:#F44336
+    classDef action fill:#E8EAF6,stroke:#3F51B5
+    
+    class A user
+    class B,C enforcement
+    class D,E,F decision
+    class I,J,K telemetry
+    class L,M,N,O storage
+    class P,Q visualization
+    class R,S security
+    class T,U action
+🔍 Telemetry Flow Explanation
+Policy Enforcement: OPA evaluates each request and emits telemetry
+
+Metrics Collection: Prometheus scrapes decision counters and latency
+
+Log Forwarding: Structured decision logs stream to SIEM systems
+
+Visualization: Grafana dashboards show real-time policy patterns
+
+Security Analytics: SIEM correlates decisions with other security events
+
+Automated Response: Alerts trigger policy adjustments and remediation
+
+🎯 Key Benefits
+Real-time visibility into Zero Trust policy effectiveness
+
+Correlation capabilities between policy decisions and security events
+
+Performance optimization based on decision latency metrics
+
+Compliance auditing with complete decision trails
+
+Automated adaptation through feedback loops
+
+This telemetry-driven approach transforms static policies into adaptive, observable security controls.

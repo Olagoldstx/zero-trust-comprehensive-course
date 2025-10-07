@@ -1,34 +1,74 @@
 flowchart TD
-    A[Access Request] --> B{User in Allowlist?}
+    A[📨 Access Request] --> B{User in Allowlist?}
     B -->|No| C[🚫 Access Denied]
     B -->|Yes| D{Device Compliant?}
     
     D -->|No| C
-    D -->|Yes| E{Risk <= Threshold?}
+    D -->|Yes| E{Risk ≤ 40?}
     
     E -->|No| C
-    E -->|Yes| F[Determine Resource Tier]
+    E -->|Yes| F[🔍 Determine Resource Tier]
     
-    F --> G{Resource Tier}
-    G -->|Public| H[✅ Public Access]
-    G -->|Internal| I{Role = Employee?}
-    G -->|Confidential| J{Role = Admin + MFA?}
-    G -->|Restricted| K{Role = Admin + MFA + Risk ≤ 20?}
-    G -->|Regulated| L{Role = Auditor + MFA + Risk ≤ 10?}
+    F --> G{Tier Classification}
+    G -->|Public| H[🌐 Public Tier]
+    G -->|Internal| I[🏢 Internal Tier]
+    G -->|Confidential| J[🔒 Confidential Tier]
+    G -->|Restricted| K[⚡ Restricted Tier]
+    G -->|Regulated| L[📜 Regulated Tier]
     
-    I -->|Yes| H
-    I -->|No| C
-    J -->|Yes| H
-    J -->|No| C
-    K -->|Yes| H
-    K -->|No| C
-    L -->|Yes| H
-    L -->|No| C
+    %% Public Tier - Minimal security
+    H --> M{Authenticated?}
+    M -->|Yes| N[✅ Access Granted]
+    M -->|No| C
     
-    subgraph Tiers [Sensitivity Tiers]
-        H
-    end
+    %% Internal Tier - Basic employment
+    I --> O{Role = Employee?}
+    O -->|Yes| N
+    O -->|No| C
     
-    style H fill:#90EE90
-    style C fill:#FFB6C1
-    style A fill:#E6F3FF
+    %% Confidential Tier - Admin + MFA
+    J --> P{Role = Admin?}
+    P -->|No| C
+    P -->|Yes| Q{MFA Passed?}
+    Q -->|No| C
+    Q -->|Yes| N
+    
+    %% Restricted Tier - Enhanced security
+    K --> R{Role = Admin?}
+    R -->|No| C
+    R -->|Yes| S{MFA Passed?}
+    S -->|No| C
+    S -->|Yes| T{Risk ≤ 20?}
+    T -->|No| C
+    T -->|Yes| U{Device Encrypted?}
+    U -->|No| C
+    U -->|Yes| N
+    
+    %% Regulated Tier - Maximum security
+    L --> V{Role = Auditor?}
+    V -->|No| C
+    V -->|Yes| W{MFA Passed?}
+    W -->|No| C
+    W -->|Yes| X{Risk ≤ 10?}
+    X -->|No| C
+    X -->|Yes| Y{Device Encrypted?}
+    Y -->|No| C
+    Y -->|Yes| Z{Working Hours?}
+    Z -->|No| C
+    Z -->|Yes| N
+    
+    classDef tierPublic fill:#E8F5E8,stroke:#4CAF50,stroke-width:2px
+    classDef tierInternal fill:#E3F2FD,stroke:#2196F3,stroke-width:2px
+    classDef tierConfidential fill:#FFF3E0,stroke:#FF9800,stroke-width:2px
+    classDef tierRestricted fill:#FFEBEE,stroke:#F44336,stroke-width:2px
+    classDef tierRegulated fill:#F3E5F5,stroke:#9C27B0,stroke-width:2px
+    classDef success fill:#C8E6C9,stroke:#2E7D32,stroke-width:2px
+    classDef denied fill:#FFCDD2,stroke:#C62828,stroke-width:2px
+    
+    class H tierPublic
+    class I tierInternal
+    class J tierConfidential
+    class K tierRestricted
+    class L tierRegulated
+    class N success
+    class C denied

@@ -1,87 +1,115 @@
 package telemetry.enforce
 
+import future.keywords.in
+
 default allow = false
 
-# Annotated rule to emit decision metadata
+# Telemetry-enhanced authorization with comprehensive metrics
 allow if {
-    input.user == "ola"
+    # Identity verification
+    input.user in user_allowlist
+    
+    # Device compliance
     input.device.compliant
-    input.context.risk <= 50
-    trace(sprintf("ALLOW user=%v risk=%v", [input.user, input.context.risk]))
+    
+    # Risk assessment
+    input.context.risk <= risk_threshold
+    
+    # Geographic controls (if enabled)
+    valid_geolocation
+    
+    # Time-based restrictions
+    within_access_hours
+    
+    # Emit telemetry for ALLOW decisions
+    trace_decision("ALLOW", input.user, input.context.risk, "low_risk_compliant_device")
 }
 
+# Automatic deny with detailed telemetry
 deny if {
-    trace(sprintf("DENY user=%v risk=%v", [input.user, input.context.risk]))
-    not allow
+    # Emit telemetry for DENY decisions with reason
+    decision_reason := get_deny_reason
+    trace_decision("DENY", input.user, input.context.risk, decision_reason)
 }
-💡 trace() writes structured messages OPA can expose to logs → Prometheus/SIEM.
 
-⚙️ Step 3 – Run OPA with Decision Logs and Metrics
-OPA can emit Prometheus metrics + decision logs locally:
+# User authorization list
+user_allowlist := {"ola", "admin", "operator", "auditor"}
 
-bash
-Copy code
-opa run -s -a :8181 policy.rego \
-  --set decision_logs.console=true \
-  --set prometheus=true
-OPA now:
+# Dynamic risk threshold
+risk_threshold := 50
 
-Serves policy decisions → :8181
+# Geolocation validation
+valid_geolocation if {
+    not input.context.geo_restricted
+}
 
-Exposes Prometheus metrics → /metrics
+valid_geolocation if {
+    input.context.geo_restricted
+    input.context.country in allowed_countries
+}
 
-Prints audit events → console (JSON form)
+allowed_countries := {"US", "CA", "UK", "DE"}
 
-🧮 Step 4 – Query and Test
-bash
-Copy code
-# Simulate requests
-curl -s -H "Content-Type: application/json" \
-  -d '{"input":{"user":"ola","device":{"compliant":true},"context":{"risk":25}}}' \
-  http://127.0.0.1:8181/v1/data/telemetry/enforce/allow
+# Time-based access controls
+within_access_hours if {
+    not input.context.time_restricted
+}
 
-curl -s -H "Content-Type: application/json" \
-  -d '{"input":{"user":"guest","device":{"compliant":true},"context":{"risk":70}}}' \
-  http://127.0.0.1:8181/v1/data/telemetry/enforce/allow
+within_access_hours if {
+    input.context.time_restricted
+    current_hour >= 9
+    current_hour <= 17
+}
 
-# View metrics
-curl http://127.0.0.1:8181/metrics | grep opa_decision
-You’ll see counters like:
+current_hour := time.clock(time.now_ns())[0]
 
-arduino
-Copy code
-opa_decision_duration_seconds_count{decision_id="data.telemetry.enforce.allow"} 2
-opa_decision_duration_seconds_sum{decision_id="data.telemetry.enforce.allow"} 0.004
-📊 Step 5 – Simulated SIEM Integration
-Create a simple forwarder that tails OPA’s decision logs and ships them to a SIEM API.
+# Determine deny reason for telemetry
+get_deny_reason := reason if {
+    not input.user in user_allowlist
+    reason := "unauthorized_user"
+}
 
-bash
-Copy code
-nano forwarder.sh
-Paste:
+get_deny_reason := reason if {
+    input.user in user_allowlist
+    not input.device.compliant
+    reason := "non_compliant_device"
+}
 
-bash
-Copy code
-#!/bin/bash
-LOGFILE=opa_decision.log
+get_deny_reason := reason if {
+    input.user in user_allowlist
+    input.device.compliant
+    input.context.risk > risk_threshold
+    reason := "high_risk_score"
+}
 
-opa run -s -a :8181 policy.rego --set decision_logs.console=true 2>&1 | tee -a $LOGFILE &
+get_deny_reason := reason if {
+    input.user in user_allowlist
+    input.device.compliant
+    input.context.risk <= risk_threshold
+    input.context.geo_restricted
+    not input.context.country in allowed_countries
+    reason := "geographic_restriction"
+}
 
-# Simulate ship to SIEM (mock endpoint)
-tail -f $LOGFILE | while read line; do
-  echo "Forwarding to SIEM: $line"
-done
-Then run:
+get_deny_reason := reason if {
+    input.user in user_allowlist
+    input.device.compliant
+    input.context.risk <= risk_threshold
+    not within_access_hours
+    reason := "outside_access_hours"
+}
 
-bash
-Copy code
-chmod +x forwarder.sh
-./forwarder.sh
-You’ll see “Forwarding to SIEM: {…decision log JSON…}”.
+get_deny_reason := "unknown_reason"
 
-🧠 Reflection
-Why is decision telemetry vital in Zero Trust?
+# Telemetry helper function
+trace_decision(outcome, user, risk, reason) = true if {
+    trace(sprintf("decision_outcome=%s user=%s risk=%d reason=%s timestamp=%s", 
+        [outcome, user, risk, reason, time.format_rfc3339_ns(time.now_ns())]))
+}
 
-How would you correlate OPA metrics with network flows in SIEM?
-
-Could you auto-quarantine a device if deny rate > threshold?
+# Metrics counters for Prometheus
+decision_counter[outcome] := count if {
+    some i
+    decision := trace_decision(outcome, _, _, _)
+    count := i + 1
+}
