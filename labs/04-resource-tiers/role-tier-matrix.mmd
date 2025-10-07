@@ -1,0 +1,66 @@
+graph TB
+    subgraph ROLES [User Roles]
+        R1[👨‍💼 Employee]
+        R2[👨‍💻 Admin]
+        R3[👨‍⚖️ Auditor]
+        R4[👤 Guest]
+    end
+    
+    subgraph TIERS [Sensitivity Tiers]
+        T1[🌐 Public]
+        T2[🏢 Internal]
+        T3[🔒 Confidential]
+        T4[⚡ Restricted]
+        T5[📜 Regulated]
+    end
+    
+    subgraph CONDITIONS [Security Conditions]
+        C1[✅ Authenticated]
+        C2[📱 Device Compliant]
+        C3[🎯 Risk ≤ 40]
+        C4[🔐 MFA Required]
+        C5[📊 Risk ≤ 20]
+        C6[💾 Device Encrypted]
+        C7[📊 Risk ≤ 10]
+        C8[🕒 Working Hours]
+    end
+    
+    R1 -->|Can Access| T1
+    R1 -->|Can Access| T2
+    T1 --> C1
+    T2 --> C1
+    T2 --> C2
+    T2 --> C3
+    
+    R2 -->|Can Access| T1
+    R2 -->|Can Access| T2
+    R2 -->|Can Access| T3
+    R2 -->|Can Access| T4
+    T3 --> C1
+    T3 --> C2
+    T3 --> C3
+    T3 --> C4
+    T4 --> C1
+    T4 --> C2
+    T4 --> C4
+    T4 --> C5
+    T4 --> C6
+    
+    R3 -->|Can Access| T5
+    T5 --> C1
+    T5 --> C2
+    T5 --> C4
+    T5 --> C7
+    T5 --> C6
+    T5 --> C8
+    
+    R4 -->|Can Access| T1
+    T1 --> C1
+    
+    classDef role fill:#E3F2FD,stroke:#1976D2
+    classDef tier fill:#F3E5F5,stroke:#7B1FA2
+    classDef condition fill:#E8F5E8,stroke:#388E3C
+    
+    class R1,R2,R3,R4 role
+    class T1,T2,T3,T4,T5 tier
+    class C1,C2,C3,C4,C5,C6,C7,C8 condition
