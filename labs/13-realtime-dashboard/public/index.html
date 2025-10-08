@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero-Trust Dashboard</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 40px;
+            background: #0b1020;
+            color: white;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .card { 
+            background: #121a33; 
+            padding: 20px; 
+            margin: 20px 0; 
+            border-radius: 8px;
+            border: 1px solid #26345c;
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 10px;
+        }
+        th, td { 
+            padding: 8px 12px; 
+            text-align: left; 
+            border-bottom: 1px solid #26345c;
+        }
+        th { background: #1a243f; }
+        .status-ok { color: #76e2b3; }
+        .status-alert { color: #ff8a8a; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔭 Zero-Trust Multicloud Dashboard</h1>
+        
+        <div class="card">
+            <h2>Server Status</h2>
+            <p>✅ Dashboard server is running successfully!</p>
+            <p>API Endpoints:</p>
+            <ul>
+                <li><a href="/health" target="_blank">/health</a> - Server health check</li>
+                <li><a href="/api/events" target="_blank">/api/events</a> - Multi-cloud events</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>Recent Multi-Cloud Events</h2>
+            <div id="events-table">
+                <p>Loading events...</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Next Steps</h2>
+            <p>To see the full real-time dashboard with charts and live updates:</p>
+            <ol>
+                <li>Stop the current server (Ctrl+C)</li>
+                <li>Run the full dashboard: <code>node server.js</code></li>
+                <li>Generate events: <code>./labs/12-cross-cloud-correlation/generate_cloud_events.sh</code></li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Load events from API
+        fetch('/api/events')
+            .then(response => response.json())
+            .then(events => {
+                const container = document.getElementById('events-table');
+                if (events.length === 0) {
+                    container.innerHTML = '<p>No events found. Generate events first.</p>';
+                    return;
+                }
+
+                let html = `
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Cloud</th>
+                                <th>User</th>
+                                <th>Severity</th>
+                                <th>Message</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `;
+
+                events.slice(-10).forEach(event => {
+                    const severityClass = event.severity >= 4 ? 'status-alert' : 'status-ok';
+                    html += `
+                        <tr>
+                            <td>${new Date(event.timestamp).toLocaleTimeString()}</td>
+                            <td>${event.cloud}</td>
+                            <td>${event.user}</td>
+                            <td class="${severityClass}">${event.severity}</td>
+                            <td>${event.message}</td>
+                        </tr>
+                    `;
+                });
+
+                html += '</tbody></table>';
+                container.innerHTML = html;
+            })
+            .catch(error => {
+                document.getElementById('events-table').innerHTML = 
+                    '<p>Error loading events: ' + error.message + '</p>';
+            });
+    </script>
+</body>
+</html>
