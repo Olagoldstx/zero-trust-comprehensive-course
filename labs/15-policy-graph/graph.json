@@ -1,0 +1,37 @@
+{
+  "nodes": [
+    {"id":"user:ola", "type":"user", "department":"engineering"},
+    {"id":"user:attacker", "type":"user", "department":"external"},
+    {"id":"role:employee", "type":"role", "sensitivity":"low"},
+    {"id":"role:admin", "type":"role", "sensitivity":"high"},
+    {"id":"role:db_admin", "type":"role", "sensitivity":"critical"},
+    {"id":"policy:opa-telemetry", "type":"policy", "enforcement":"strict"},
+    {"id":"policy:legacy-access", "type":"policy", "enforcement":"weak"},
+    {"id":"pep:proxy8080", "type":"pep", "version":"v2"},
+    {"id":"pep:legacy-gateway", "type":"pep", "version":"v1"},
+    {"id":"svc:profiles", "type":"service", "tier":"internal", "sensitivity":"medium"},
+    {"id":"svc:payments", "type":"service", "tier":"confidential", "sensitivity":"high"},
+    {"id":"db:profiles", "type":"data", "tier":"confidential", "sensitivity":"high"},
+    {"id":"db:transactions", "type":"data", "tier":"restricted", "sensitivity":"critical"},
+    {"id":"svc:public-api", "type":"service", "tier":"public", "sensitivity":"low"}
+  ],
+  "edges": [
+    {"src":"user:ola","dst":"role:employee","rel":"ASSIGNED"},
+    {"src":"user:ola","dst":"role:admin","rel":"ASSIGNED"},
+    {"src":"user:attacker","dst":"role:employee","rel":"COMPROMISED"},
+    {"src":"role:employee","dst":"policy:opa-telemetry","rel":"GOVERNS"},
+    {"src":"role:admin","dst":"policy:legacy-access","rel":"GOVERNS"},
+    {"src":"policy:opa-telemetry","dst":"pep:proxy8080","rel":"ENFORCES"},
+    {"src":"policy:legacy-access","dst":"pep:legacy-gateway","rel":"ENFORCES"},
+    {"src":"pep:proxy8080","dst":"svc:profiles","rel":"FRONTS"},
+    {"src":"pep:proxy8080","dst":"svc:payments","rel":"FRONTS"},
+    {"src":"pep:legacy-gateway","dst":"svc:profiles","rel":"FRONTS"},
+    {"src":"svc:profiles","dst":"db:profiles","rel":"QUERIES"},
+    {"src":"svc:payments","dst":"db:transactions","rel":"PROCESSES"},
+    {"src":"user:ola","dst":"svc:public-api","rel":"CALLS"},
+    {"src":"role:employee","dst":"svc:profiles","rel":"CAN_CALL_DIRECT", "risk":"med"},
+    {"src":"role:admin","dst":"db:profiles","rel":"CAN_QUERY_DIRECT", "risk":"high"},
+    {"src":"role:db_admin","dst":"db:transactions","rel":"CAN_ACCESS_RAW", "risk":"critical"},
+    {"src":"user:attacker","dst":"svc:public-api","rel":"EXPLOITS", "risk":"low"}
+  ]
+}

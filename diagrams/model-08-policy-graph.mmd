@@ -1,0 +1,79 @@
+🔗 Generating Policy Graph Visualization
+flowchart TB
+
+  user_ola["user\nola"]
+  class user_ola U;
+  user_attacker["user\nattacker"]
+  class user_attacker U;
+  role_employee["role\nemployee"]
+  class role_employee R;
+  role_admin["role\nadmin"]
+  class role_admin R_RISKY;
+  role_db_admin["role\ndb_admin"]
+  class role_db_admin R_RISKY;
+  policy_opa-telemetry["policy\nopa-telemetry"]
+  class policy_opa-telemetry POL;
+  policy_legacy-access["policy\nlegacy-access"]
+  class policy_legacy-access POL;
+  pep_proxy8080["pep\nproxy8080"]
+  class pep_proxy8080 PEP;
+  pep_legacy-gateway["pep\nlegacy-gateway"]
+  class pep_legacy-gateway PEP;
+  svc_profiles["svc\nprofiles"]
+  class svc_profiles SVC;
+  svc_payments["svc\npayments"]
+  class svc_payments SVC_RISKY;
+  db_profiles["db\nprofiles"]
+  class db_profiles DATA_RISKY;
+  db_transactions["db\ntransactions"]
+  class db_transactions DATA_RISKY;
+  svc_public-api["svc\npublic-api"]
+  class svc_public-api SVC;
+
+  user_ola --> role_employee;
+  user_ola --> role_admin;
+  user_attacker --> role_employee;
+  role_employee --> policy_opa-telemetry;
+  role_admin --> policy_legacy-access;
+  policy_opa-telemetry --> pep_proxy8080;
+  policy_legacy-access --> pep_legacy-gateway;
+  pep_proxy8080 --> svc_profiles;
+  pep_proxy8080 --> svc_payments;
+  pep_legacy-gateway --> svc_profiles;
+  svc_profiles --> db_profiles;
+  svc_payments --> db_transactions;
+  user_ola --> svc_public-api;
+  role_employee -.-> |MED| svc_profiles;
+  role_admin ==> |HIGH| db_profiles;
+  role_db_admin ==>> |CRITICAL| db_transactions;
+  user_attacker --- |LOW| svc_public-api;
+
+
+classDef U fill:#e6f3ff,stroke:#6cb0f5,stroke-width:2px;
+classDef R fill:#eef7ff,stroke:#4d94ff,stroke-width:2px;
+classDef POL fill:#f0fff0,stroke:#66cc66,stroke-width:2px;
+classDef PEP fill:#fff0f5,stroke:#ff69b4,stroke-width:2px;
+classDef SVC fill:#fffbe6,stroke:#e6b800,stroke-width:2px;
+classDef DATA fill:#ffecec,stroke:#ff4d4d,stroke-width:2px;
+
+classDef U_RISKY fill:#ffebee,stroke:#f44336,stroke-width:3px;
+classDef R_RISKY fill:#ffebee,stroke:#f44336,stroke-width:3px;
+classDef POL_RISKY fill:#ffebee,stroke:#f44336,stroke-width:3px;
+classDef PEP_RISKY fill:#ffebee,stroke:#f44336,stroke-width:3px;
+classDef SVC_RISKY fill:#ffebee,stroke:#f44336,stroke-width:3px;
+classDef DATA_RISKY fill:#ffebee,stroke:#f44336,stroke-width:3px;
+
+classDef DEFAULT fill:#f5f5f5,stroke:#666,stroke-width:1px;
+
+
+%% Graph Legend
+subgraph LEGEND[Graph Legend]
+  direction LR
+  L1[User]:::U
+  L2[Role]:::R
+  L3[Policy]:::POL
+  L4[PEP]:::PEP
+  L5[Service]:::SVC
+  L6[Data]:::DATA
+end
+
