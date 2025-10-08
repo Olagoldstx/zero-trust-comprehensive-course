@@ -1,60 +1,60 @@
-{"timestamp":"2025-10-07T15:33:28-07:00","cloud":"gcp","user":"admin","severity":4,"message":"IAM policy change detected"}
-{"timestamp":"2025-10-07T15:33:28-07:00","cloud":"gcp","user":"guest","severity":0,"message":"Unusual API call pattern"}
-{"timestamp":"2025-10-07T15:33:28-07:00","cloud":"aws","user":"attacker","severity":4,"message":"Login failure"}
-{"timestamp":"2025-10-07T15:33:28-07:00","cloud":"gcp","user":"devops","severity":1,"message":"Privilege escalation attempt"}
-{"timestamp":"2025-10-07T15:33:28-07:00","cloud":"gcp","user":"monitor","severity":3,"message":"Privilege escalation attempt"}
-{"timestamp":"2025-10-07T15:33:28-07:00","cloud":"azure","user":"monitor","severity":0,"message":"IAM policy change detected"}
-{"timestamp":"2025-10-07T15:33:28-07:00","cloud":"azure","user":"monitor","severity":4,"message":"IAM policy change detected"}
-{"timestamp":"2025-10-07T15:33:28-07:00","cloud":"gcp","user":"admin","severity":3,"message":"Resource access from unusual location"}
-{"timestamp":"2025-10-07T15:33:28-07:00","cloud":"gcp","user":"guest","severity":0,"message":"Privilege escalation attempt"}
-{"timestamp":"2025-10-07T15:33:29-07:00","cloud":"azure","user":"attacker","severity":4,"message":"Resource access from unusual location"}
-{"timestamp":"2025-10-07T15:33:29-07:00","cloud":"azure","user":"admin","severity":0,"message":"IAM policy change detected"}
-{"timestamp":"2025-10-07T15:33:29-07:00","cloud":"aws","user":"ola","severity":2,"message":"Security group modification"}
-{"timestamp":"2025-10-07T15:33:29-07:00","cloud":"gcp","user":"devops","severity":1,"message":"Security group modification"}
-{"timestamp":"2025-10-07T15:33:29-07:00","cloud":"gcp","user":"guest","severity":3,"message":"Privilege escalation attempt"}
-{"timestamp":"2025-10-07T15:33:29-07:00","cloud":"azure","user":"monitor","severity":0,"message":"Resource access from unusual location"}
-{"timestamp":"2025-10-07T15:33:29-07:00","cloud":"aws","user":"monitor","severity":2,"message":"Login failure"}
-{"timestamp":"2025-10-07T15:33:30-07:00","cloud":"aws","user":"admin","severity":0,"message":"Login failure"}
-{"timestamp":"2025-10-07T15:33:30-07:00","cloud":"gcp","user":"guest","severity":0,"message":"Privilege escalation attempt"}
-{"timestamp":"2025-10-07T15:33:30-07:00","cloud":"azure","user":"admin","severity":2,"message":"Privilege escalation attempt"}
-{"timestamp":"2025-10-07T15:33:30-07:00","cloud":"gcp","user":"devops","severity":1,"message":"Unusual API call pattern"}
-{"timestamp":"2025-10-07T15:33:30-07:00","cloud":"azure","user":"admin","severity":0,"message":"Security group modification"}
-{"timestamp":"2025-10-07T15:33:30-07:00","cloud":"gcp","user":"monitor","severity":4,"message":"IAM policy change detected"}
-{"timestamp":"2025-10-07T15:33:30-07:00","cloud":"gcp","user":"admin","severity":1,"message":"Resource access from unusual location"}
-{"timestamp":"2025-10-07T15:33:31-07:00","cloud":"aws","user":"ola","severity":3,"message":"Privilege escalation attempt"}
-{"timestamp":"2025-10-07T15:33:31-07:00","cloud":"azure","user":"attacker","severity":4,"message":"Resource access from unusual location"}
-{"timestamp":"2025-10-07T15:33:31-07:00","cloud":"azure","user":"admin","severity":1,"message":"IAM policy change detected"}
-{"timestamp":"2025-10-07T15:33:31-07:00","cloud":"azure","user":"devops","severity":4,"message":"Unusual API call pattern"}
-{"timestamp":"2025-10-07T15:33:31-07:00","cloud":"aws","user":"ola","severity":2,"message":"Privilege escalation attempt"}
-{"timestamp":"2025-10-07T15:33:31-07:00","cloud":"gcp","user":"attacker","severity":4,"message":"Privilege escalation attempt"}
-{"timestamp":"2025-10-07T15:33:31-07:00","cloud":"gcp","user":"monitor","severity":4,"message":"Unusual API call pattern"}
-{"timestamp":"2025-10-07T15:33:31-07:00","cloud":"aws","user":"admin","severity":2,"message":"Login failure"}
-{"timestamp":"2025-10-07T15:33:32-07:00","cloud":"gcp","user":"ola","severity":1,"message":"IAM policy change detected"}
-{"timestamp":"2025-10-07T15:33:32-07:00","cloud":"gcp","user":"admin","severity":1,"message":"Security group modification"}
-{"timestamp":"2025-10-07T15:33:32-07:00","cloud":"azure","user":"ola","severity":2,"message":"Privilege escalation attempt"}
-{"timestamp":"2025-10-07T15:33:32-07:00","cloud":"azure","user":"devops","severity":4,"message":"Privilege escalation attempt"}
-{"timestamp":"2025-10-07T15:33:32-07:00","cloud":"azure","user":"admin","severity":0,"message":"Unusual API call pattern"}
-{"timestamp":"2025-10-07T15:33:32-07:00","cloud":"aws","user":"admin","severity":1,"message":"Security group modification"}
-{"timestamp":"2025-10-07T15:33:32-07:00","cloud":"azure","user":"ola","severity":2,"message":"IAM policy change detected"}
-{"timestamp":"2025-10-07T15:33:32-07:00","cloud":"aws","user":"attacker","severity":4,"message":"Privilege escalation attempt"}
-{"timestamp":"2025-10-07T15:33:33-07:00","cloud":"azure","user":"attacker","severity":4,"message":"Privilege escalation attempt"}
-{"timestamp":"2025-10-07T15:33:33-07:00","cloud":"gcp","user":"ola","severity":4,"message":"IAM policy change detected"}
-{"timestamp":"2025-10-07T15:33:33-07:00","cloud":"azure","user":"admin","severity":3,"message":"Privilege escalation attempt"}
-{"timestamp":"2025-10-07T15:33:33-07:00","cloud":"azure","user":"attacker","severity":4,"message":"IAM policy change detected"}
-{"timestamp":"2025-10-07T15:33:33-07:00","cloud":"gcp","user":"attacker","severity":4,"message":"Privilege escalation attempt"}
-{"timestamp":"2025-10-07T15:33:33-07:00","cloud":"azure","user":"admin","severity":3,"message":"Unusual API call pattern"}
-{"timestamp":"2025-10-07T15:33:33-07:00","cloud":"aws","user":"devops","severity":3,"message":"Privilege escalation attempt"}
-{"timestamp":"2025-10-07T15:33:34-07:00","cloud":"gcp","user":"monitor","severity":3,"message":"IAM policy change detected"}
-{"timestamp":"2025-10-07T15:33:34-07:00","cloud":"aws","user":"attacker","severity":4,"message":"IAM policy change detected"}
-{"timestamp":"2025-10-07T15:33:34-07:00","cloud":"azure","user":"monitor","severity":1,"message":"Unusual API call pattern"}
-{"timestamp":"2025-10-07T15:33:34-07:00","cloud":"aws","user":"devops","severity":2,"message":"Security group modification"}
-{"timestamp":"2025-10-07T15:33:34-07:00","cloud":"aws","user":"attacker","severity":4,"message":"Resource access from unusual location"}
-{"timestamp":"2025-10-07T15:33:34-07:00","cloud":"aws","user":"devops","severity":4,"message":"Privilege escalation attempt"}
-{"timestamp":"2025-10-07T15:33:35-07:00","cloud":"gcp","user":"attacker","severity":4,"message":"Privilege escalation attempt"}
-{"timestamp":"2025-10-07T15:33:35-07:00","cloud":"aws","user":"guest","severity":0,"message":"Unusual API call pattern"}
-{"timestamp":"2025-10-07T15:33:35-07:00","cloud":"aws","user":"guest","severity":1,"message":"Resource access from unusual location"}
-{"timestamp":"2025-10-07T15:33:35-07:00","cloud":"gcp","user":"ola","severity":0,"message":"Resource access from unusual location"}
-{"timestamp":"2025-10-07T15:33:35-07:00","cloud":"aws","user":"attacker","severity":4,"message":"Security group modification"}
-{"timestamp":"2025-10-07T15:33:35-07:00","cloud":"aws","user":"guest","severity":0,"message":"Login failure"}
-{"timestamp":"2025-10-07T15:33:35-07:00","cloud":"aws","user":"ola","severity":1,"message":"Unusual API call pattern"}
-{"timestamp":"2025-10-07T15:33:35-07:00","cloud":"aws","user":"attacker","severity":4,"message":"IAM policy change detected"}
+{"timestamp":"2025-10-08T00:51:00-07:00","cloud":"aws","user":"monitor","severity":4,"message":"Security group modification"}
+{"timestamp":"2025-10-08T00:51:01-07:00","cloud":"gcp","user":"guest","severity":1,"message":"Security group modification"}
+{"timestamp":"2025-10-08T00:51:01-07:00","cloud":"azure","user":"guest","severity":0,"message":"Security group modification"}
+{"timestamp":"2025-10-08T00:51:01-07:00","cloud":"aws","user":"devops","severity":4,"message":"Resource access from unusual location"}
+{"timestamp":"2025-10-08T00:51:01-07:00","cloud":"azure","user":"admin","severity":1,"message":"Unusual API call pattern"}
+{"timestamp":"2025-10-08T00:51:01-07:00","cloud":"aws","user":"admin","severity":2,"message":"Unusual API call pattern"}
+{"timestamp":"2025-10-08T00:51:01-07:00","cloud":"gcp","user":"monitor","severity":2,"message":"Unusual API call pattern"}
+{"timestamp":"2025-10-08T00:51:01-07:00","cloud":"gcp","user":"attacker","severity":4,"message":"IAM policy change detected"}
+{"timestamp":"2025-10-08T00:51:01-07:00","cloud":"azure","user":"admin","severity":4,"message":"Privilege escalation attempt"}
+{"timestamp":"2025-10-08T00:51:01-07:00","cloud":"azure","user":"attacker","severity":4,"message":"Security group modification"}
+{"timestamp":"2025-10-08T00:51:01-07:00","cloud":"gcp","user":"attacker","severity":4,"message":"Privilege escalation attempt"}
+{"timestamp":"2025-10-08T00:51:01-07:00","cloud":"azure","user":"monitor","severity":1,"message":"IAM policy change detected"}
+{"timestamp":"2025-10-08T00:51:01-07:00","cloud":"gcp","user":"admin","severity":1,"message":"Unusual API call pattern"}
+{"timestamp":"2025-10-08T00:51:01-07:00","cloud":"azure","user":"guest","severity":2,"message":"Resource access from unusual location"}
+{"timestamp":"2025-10-08T00:51:01-07:00","cloud":"gcp","user":"admin","severity":1,"message":"Privilege escalation attempt"}
+{"timestamp":"2025-10-08T00:51:01-07:00","cloud":"azure","user":"attacker","severity":4,"message":"Unusual API call pattern"}
+{"timestamp":"2025-10-08T00:51:01-07:00","cloud":"azure","user":"guest","severity":1,"message":"Resource access from unusual location"}
+{"timestamp":"2025-10-08T00:51:01-07:00","cloud":"azure","user":"devops","severity":1,"message":"Unusual API call pattern"}
+{"timestamp":"2025-10-08T00:51:01-07:00","cloud":"gcp","user":"admin","severity":4,"message":"Login failure"}
+{"timestamp":"2025-10-08T00:51:01-07:00","cloud":"azure","user":"monitor","severity":0,"message":"Unusual API call pattern"}
+{"timestamp":"2025-10-08T00:51:01-07:00","cloud":"aws","user":"monitor","severity":1,"message":"Login failure"}
+{"timestamp":"2025-10-08T00:51:01-07:00","cloud":"aws","user":"devops","severity":4,"message":"Login failure"}
+{"timestamp":"2025-10-08T00:51:01-07:00","cloud":"gcp","user":"devops","severity":4,"message":"Unusual API call pattern"}
+{"timestamp":"2025-10-08T00:51:01-07:00","cloud":"aws","user":"attacker","severity":4,"message":"Security group modification"}
+{"timestamp":"2025-10-08T00:51:01-07:00","cloud":"azure","user":"admin","severity":2,"message":"Unusual API call pattern"}
+{"timestamp":"2025-10-08T00:51:01-07:00","cloud":"gcp","user":"attacker","severity":4,"message":"IAM policy change detected"}
+{"timestamp":"2025-10-08T00:51:01-07:00","cloud":"gcp","user":"guest","severity":4,"message":"IAM policy change detected"}
+{"timestamp":"2025-10-08T00:51:02-07:00","cloud":"aws","user":"monitor","severity":2,"message":"Security group modification"}
+{"timestamp":"2025-10-08T00:51:02-07:00","cloud":"aws","user":"admin","severity":4,"message":"Security group modification"}
+{"timestamp":"2025-10-08T00:51:02-07:00","cloud":"aws","user":"devops","severity":3,"message":"Login failure"}
+{"timestamp":"2025-10-08T00:51:02-07:00","cloud":"aws","user":"devops","severity":4,"message":"Privilege escalation attempt"}
+{"timestamp":"2025-10-08T00:51:02-07:00","cloud":"aws","user":"guest","severity":3,"message":"Login failure"}
+{"timestamp":"2025-10-08T00:51:02-07:00","cloud":"gcp","user":"monitor","severity":3,"message":"Login failure"}
+{"timestamp":"2025-10-08T00:51:02-07:00","cloud":"azure","user":"guest","severity":1,"message":"Unusual API call pattern"}
+{"timestamp":"2025-10-08T00:51:02-07:00","cloud":"azure","user":"monitor","severity":4,"message":"Unusual API call pattern"}
+{"timestamp":"2025-10-08T00:51:02-07:00","cloud":"aws","user":"devops","severity":3,"message":"Security group modification"}
+{"timestamp":"2025-10-08T00:51:02-07:00","cloud":"gcp","user":"devops","severity":4,"message":"IAM policy change detected"}
+{"timestamp":"2025-10-08T00:51:02-07:00","cloud":"gcp","user":"attacker","severity":4,"message":"Unusual API call pattern"}
+{"timestamp":"2025-10-08T00:51:02-07:00","cloud":"aws","user":"devops","severity":0,"message":"Unusual API call pattern"}
+{"timestamp":"2025-10-08T00:51:02-07:00","cloud":"gcp","user":"admin","severity":4,"message":"Resource access from unusual location"}
+{"timestamp":"2025-10-08T00:51:02-07:00","cloud":"aws","user":"monitor","severity":2,"message":"Resource access from unusual location"}
+{"timestamp":"2025-10-08T00:51:02-07:00","cloud":"gcp","user":"ola","severity":0,"message":"IAM policy change detected"}
+{"timestamp":"2025-10-08T00:51:02-07:00","cloud":"aws","user":"admin","severity":0,"message":"Unusual API call pattern"}
+{"timestamp":"2025-10-08T00:51:02-07:00","cloud":"gcp","user":"attacker","severity":4,"message":"IAM policy change detected"}
+{"timestamp":"2025-10-08T00:51:02-07:00","cloud":"aws","user":"admin","severity":4,"message":"Unusual API call pattern"}
+{"timestamp":"2025-10-08T00:51:02-07:00","cloud":"aws","user":"admin","severity":0,"message":"Unusual API call pattern"}
+{"timestamp":"2025-10-08T00:51:02-07:00","cloud":"gcp","user":"attacker","severity":4,"message":"Security group modification"}
+{"timestamp":"2025-10-08T00:51:02-07:00","cloud":"aws","user":"attacker","severity":4,"message":"Security group modification"}
+{"timestamp":"2025-10-08T00:51:02-07:00","cloud":"azure","user":"devops","severity":4,"message":"Resource access from unusual location"}
+{"timestamp":"2025-10-08T00:51:02-07:00","cloud":"aws","user":"guest","severity":0,"message":"IAM policy change detected"}
+{"timestamp":"2025-10-08T00:51:02-07:00","cloud":"gcp","user":"admin","severity":4,"message":"Privilege escalation attempt"}
+{"timestamp":"2025-10-08T00:51:02-07:00","cloud":"azure","user":"attacker","severity":4,"message":"Login failure"}
+{"timestamp":"2025-10-08T00:51:02-07:00","cloud":"aws","user":"admin","severity":2,"message":"Privilege escalation attempt"}
+{"timestamp":"2025-10-08T00:51:02-07:00","cloud":"aws","user":"attacker","severity":4,"message":"IAM policy change detected"}
+{"timestamp":"2025-10-08T00:51:02-07:00","cloud":"gcp","user":"ola","severity":3,"message":"Unusual API call pattern"}
+{"timestamp":"2025-10-08T00:51:03-07:00","cloud":"gcp","user":"attacker","severity":4,"message":"Login failure"}
+{"timestamp":"2025-10-08T00:51:03-07:00","cloud":"aws","user":"ola","severity":0,"message":"Resource access from unusual location"}
+{"timestamp":"2025-10-08T00:51:03-07:00","cloud":"aws","user":"admin","severity":3,"message":"Unusual API call pattern"}
+{"timestamp":"2025-10-08T00:51:03-07:00","cloud":"azure","user":"guest","severity":0,"message":"Login failure"}
+{"timestamp":"2025-10-08T00:51:03-07:00","cloud":"aws","user":"attacker","severity":4,"message":"IAM policy change detected"}
