@@ -1,3 +1,18 @@
+<!-- BADGES:START -->
+
+<div align="left">
+[![](https://img.shields.io/github/license/Olagoldstx/zero-trust-comprehensive-course?style=for-the-badge&labelColor=0f172a)](https://github.com/Olagoldstx/zero-trust-comprehensive-course)
+[![](https://img.shields.io/github/stars/Olagoldstx/zero-trust-comprehensive-course?style=for-the-badge&labelColor=0f172a&logo=github)](https://github.com/Olagoldstx/zero-trust-comprehensive-course)
+[![](https://img.shields.io/github/last-commit/Olagoldstx/zero-trust-comprehensive-course?style=for-the-badge&labelColor=0f172a)](https://github.com/Olagoldstx/zero-trust-comprehensive-course)
+[![](https://img.shields.io/github/issues/Olagoldstx/zero-trust-comprehensive-course?style=for-the-badge&labelColor=0f172a)](https://github.com/Olagoldstx/zero-trust-comprehensive-course)
+[![](https://img.shields.io/github/issues-pr/Olagoldstx/zero-trust-comprehensive-course?style=for-the-badge&labelColor=0f172a)](https://github.com/Olagoldstx/zero-trust-comprehensive-course)
+[![](https://img.shields.io/github/repo-size/Olagoldstx/zero-trust-comprehensive-course?style=for-the-badge&labelColor=0f172a)](https://github.com/Olagoldstx/zero-trust-comprehensive-course)
+[![](https://img.shields.io/github/languages/top/Olagoldstx/zero-trust-comprehensive-course?style=for-the-badge&labelColor=0f172a)](https://github.com/Olagoldstx/zero-trust-comprehensive-course)
+[![](https://img.shields.io/github/actions/workflow/status/Olagoldstx/zero-trust-comprehensive-course/ci.yml?branch=main&style=for-the-badge&labelColor=0f172a)](https://github.com/Olagoldstx/zero-trust-comprehensive-course)
+</div>
+
+<!-- BADGES:END -->
+
 
 <img width="1024" height="1024" alt="file_00000000816c62309e3965308b9c7d19" src="https://github.com/user-attachments/assets/a64d42b9-f6d1-42ef-b414-0dfa264e2d89" />
 
